@@ -36,10 +36,10 @@ const RecipeChat = () => {
         </div>
         <div className="senderContainer">
           <div className="inputContainer">
-            <input type="text" value={newMessage} onChange={(e) => { setNewMessage(e.target.value) }} />
+            <textarea value={newMessage} onChange={(e) => { setNewMessage(e.target.value) }} className='recipeInput' />
           </div>
           <div className="buttonContainer">
-            <button type="submit" onClick={handleSubmit}>Send</button>
+            <button type="submit" onClick={handleSubmit} className='recipeSubmitButton'>Send</button>
           </div>
         </div>
       </div>

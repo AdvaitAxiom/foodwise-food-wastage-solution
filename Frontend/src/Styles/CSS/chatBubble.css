@@ -1,11 +1,13 @@
 .userBubble{
     align-self: flex-end;
     background-color: var(--color-lightGreen);
+    text-align: right;
 }
 
 .modelBubble{
     align-self: flex-start;
     background-color: var(--color-darkGreen);
+    text-align: left;
 }
 
 .userBubble,.modelBubble{
@@ -17,3 +19,6 @@
     word-wrap: break-word;
 }
 
+.userBubble > p,.modelBubble > p{
+    margin: 0;
+}

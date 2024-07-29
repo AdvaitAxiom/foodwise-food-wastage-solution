@@ -5,7 +5,7 @@ import ChatBubble from './ChatBubble'
 
 const ChatBox = ({messages}) => {
   return (
-    <ScrollableFeed forceScroll className='chatBox'>
+    <ScrollableFeed  className='chatBox'>
       {messages.map((message,index)=>(
         <ChatBubble message={message.parts[0].text} role={message.role}/>
       ))}

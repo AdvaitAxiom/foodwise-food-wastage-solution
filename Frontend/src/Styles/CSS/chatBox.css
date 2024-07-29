@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    overflow-y: scroll;
     overflow-x: hidden;
     border-radius: 10px;
 
     background-color: var(--color-darkBlue);
     width: 100%;
-    height: 100%;
+    height: 100% !important;
 
     padding: 15px;
+    border: 2px solid whitesmoke;
 }
