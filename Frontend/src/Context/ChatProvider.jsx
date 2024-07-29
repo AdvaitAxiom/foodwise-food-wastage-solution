@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react'
 const ChatContext = createContext()
 
 const ChatProvider = ({ children }) => {
-    const [recipeMessages, setRecipeMessages] = useState([{message:"Hello",role:"model"}]);
+    const [recipeMessages, setRecipeMessages] = useState([]);
     return <ChatContext.Provider value={{ recipeMessages, setRecipeMessages }}>{children}</ChatContext.Provider>
 }
 

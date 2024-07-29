@@ -7,7 +7,7 @@ const ChatBox = ({messages}) => {
   return (
     <ScrollableFeed forceScroll className='chatBox'>
       {messages.map((message,index)=>(
-        <ChatBubble message={message.message} role={message.role}/>
+        <ChatBubble message={message.parts[0].text} role={message.role}/>
       ))}
     </ScrollableFeed>
   )
