@@ -1,0 +1,19 @@
+.userBubble{
+    align-self: flex-end;
+    background-color: var(--color-lightGreen);
+}
+
+.modelBubble{
+    align-self: flex-start;
+    background-color: var(--color-darkGreen);
+}
+
+.userBubble,.modelBubble{
+    padding: 5px 15px;
+    border-radius: 10px;
+    max-width: 80%;
+    height:fit-content;
+    font-size: 20px;
+    word-wrap: break-word;
+}
+

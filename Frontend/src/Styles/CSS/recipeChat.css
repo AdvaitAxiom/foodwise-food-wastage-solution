@@ -1,0 +1,27 @@
+.recipeChat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: var(--color-lightBlack);
+}
+
+.recipeTitleBar{
+    height: 10vh;
+}
+
+.recipeChatContainer{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipeChatBox{
+    width: 70vw;
+    height: 90%;
+}
