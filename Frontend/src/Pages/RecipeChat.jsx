@@ -4,6 +4,8 @@ import ChatBox from '../Components/ChatBox'
 import { ChatState } from '../Context/ChatProvider'
 import "../Styles/CSS/recipeChat.css"
 import { recipeModel } from '../utils/geminiModels'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 const RecipeChat = () => {
   const { recipeMessages,setRecipeMessages } = ChatState()
@@ -36,10 +38,17 @@ const RecipeChat = () => {
         </div>
         <div className="senderContainer">
           <div className="inputContainer">
-            <textarea value={newMessage} onChange={(e) => { setNewMessage(e.target.value) }} className='recipeInput' />
+            <textarea 
+              placeholder='So what are you cooking today?'
+              value={newMessage} 
+              onChange={(e) => { setNewMessage(e.target.value) }} 
+              className='recipeInput' 
+            />
           </div>
           <div className="buttonContainer">
-            <button type="submit" onClick={handleSubmit} className='recipeSubmitButton'>Send</button>
+            <button type="submit" onClick={handleSubmit} className='recipeSubmitButton'>
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
           </div>
         </div>
       </div>
