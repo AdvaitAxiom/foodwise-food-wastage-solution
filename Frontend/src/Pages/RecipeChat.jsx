@@ -6,6 +6,7 @@ import "../Styles/CSS/recipeChat.css"
 import { recipeModel } from '../utils/geminiModels'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import CheffyLogo from "../assets/CheffyLogo.png"
 
 const RecipeChat = () => {
   const { recipeMessages,setRecipeMessages } = ChatState()
@@ -29,9 +30,12 @@ const RecipeChat = () => {
     }
   }
 
+
   return (
     <div className='recipeChat'>
-      <div className='recipeTitleBar'>Cheffy</div>
+      <div className='recipeTitleBar'>
+        <img src={CheffyLogo} alt="" className='cheffyLogo'/>
+      </div>
       <div className='recipeChatContainer'>
         <div className='recipeChatBox'>
           <ChatBox messages={recipeMessages} />
