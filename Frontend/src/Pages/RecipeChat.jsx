@@ -43,7 +43,7 @@ const RecipeChat = () => {
         <div className="senderContainer">
           <div className="inputContainer">
             <textarea 
-              placeholder='So what are you cooking today?'
+              placeholder={`Tell us those ingredients... and let's whip up a culinary masterpiece! 🍳👩‍🍳👨‍🍳`}
               value={newMessage} 
               onChange={(e) => { setNewMessage(e.target.value) }} 
               className='recipeInput' 
