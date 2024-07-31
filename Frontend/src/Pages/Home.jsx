@@ -12,11 +12,13 @@ const Home = () => {
             <div className="homeContent">
                 <div className="homeTopPart">
                     <div className="homeTopText">
-                        <div className="homeTitle">
-                            FoodWise🍊
+                        <div className="homeTitleCard">
+                            Welcome to FoodWise🍊
+                        </div>
+                        <div className="homeMainText">
+                            Simplify Your Food, <br />Cut Waste, and<br /> Live Sustainably.
                         </div>
                         <div className="homeSmallText">
-                            Simplify Your Food, Cut Waste, and Live Sustainably.
                             Manage meals, track expirations, discover recipes, and donate with ease.
                             Join us in reducing waste and supporting a sustainable future. Start today!
                         </div>
