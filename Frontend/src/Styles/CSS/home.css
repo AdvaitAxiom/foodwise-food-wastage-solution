@@ -15,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 20px;
     /* background-color: var(--color-darkGreen); */
 }
 
@@ -47,10 +48,10 @@
     color: var(--color-orange);
     padding: 10px 20px;
     border-radius: 10px;
-    background: rgba(251,214,155,0.25);
+    background: rgba(251, 214, 155, 0.25);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
-    border: 1px solid rgba(251,214,155,0.125);
+    border: 1px solid rgba(251, 214, 155, 0.125);
 }
 
 .homeMainText {
@@ -76,6 +77,7 @@
 
 .homeTopImage>img {
     width: 100%;
+    filter: drop-shadow(5px 8.5px 16.5px #959595);
 }
 
 .callToActionContainer {
@@ -108,4 +110,53 @@
 
 .callToAction:nth-child(odd) {
     background-color: var(--color-orange);
+}
+
+.callToActionImage{
+    width: 60%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.callToActionImage > img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.callToActionText{
+    font-size: 20px;
+}
+
+.mapContainer{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 52vh;
+    /* background-color: var(--color-lightBlack); */
+    border-radius: 20px;
+    position: relative;
+    isolation: isolate;
+}
+
+.mapImage{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: -1;
+}
+
+.mapImage > img{
+    width: 100%;
+}
+
+.mapText{
+    font-size: 80px;
 }
