@@ -4,17 +4,42 @@ import { Link } from 'react-router-dom';
 import NavDropDown from './NavDropDown';
 
 const NavBar = () => {
+  const toolsOptions = [
+    {
+      title: "Cheffy",
+      path: "recipechat"
+    },
+    {
+      title: "Meal Planner",
+      path: "meal-planner"
+    },
+    {
+      title: "Expiration Tracker",
+      path: "expiration-tracker"
+    }
+  ]
+
+  const userOptions = [
+    {
+      title: "Account",
+      path: "profile"
+    },
+    {
+      title: "Log out",
+      path: "log-out"
+    }
+  ]
   return (
     <div className="navBar">
       <div className="navTitle">
-          FoodWise
+        FoodWise
       </div>
       <div className="navLinks">
-        <Link>Home</Link>
-        <Link>Organisations</Link>
-        <NavDropDown title={"Tools"} menuItems={["Cheffy","Meal Planner","Expiration Tracker"]}/>
-        <Link>About Us</Link>
-        <NavDropDown title={"user"} menuItems={["Account","Log Out"]}/>
+        <Link to={"/"}>Home</Link>
+        <Link to={"/organisations"}>Organisations</Link>
+        <NavDropDown title={"Tools"} menuItems={toolsOptions} />
+        <Link to={"/about-us"}>About Us</Link>
+        <NavDropDown title={"user"} menuItems={userOptions} />
       </div>
     </div>
   )
