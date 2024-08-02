@@ -2,20 +2,19 @@ import React from 'react'
 import { useState } from 'react'
 import ChatBox from '../Components/ChatBox'
 import { ChatState } from '../Context/ChatProvider'
-import "../Styles/CSS/recipeChat.css"
-import { recipeModel } from '../utils/geminiModels'
+import "../Styles/CSS/mealPlanner.css"
+import { mealModel } from '../utils/geminiModels'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import CheffyLogo from "../assets/CheffyLogo.png"
 
-const RecipeChat = () => {
-  const { recipeMessages,setRecipeMessages } = ChatState()
+const MealPlanner = () => {
+  const { mealMessages, setMealMessages } = ChatState()
   const [newMessage, setNewMessage] = useState("")
 
   const chat=async (message)=>{
-    const chatInstance = recipeModel.startChat({ history: recipeMessages });
+    const chatInstance = mealModel.startChat({ history: mealMessages });
     const result = await chatInstance.sendMessage(message);
-    setRecipeMessages((prevMessages) => [
+    setMealMessages((prevMessages) => [
       ...prevMessages,
       { role: "model", parts: [{ text: result.response.text() }] }
     ]);
@@ -24,7 +23,7 @@ const RecipeChat = () => {
   const handleSubmit = async () => {
     if (newMessage.trim()) {
       const userMessage = { role: "user", parts: [{ text: newMessage }] };
-      setRecipeMessages((prevMessages) => [...prevMessages, userMessage]);
+      setMealMessages((prevMessages) => [...prevMessages, userMessage]);
       setNewMessage('');
       await chat(newMessage);
     }
@@ -32,18 +31,18 @@ const RecipeChat = () => {
 
 
   return (
-    <div className='recipeChat'>
-      <div className='recipeTitleBar'>
-        <img src={CheffyLogo} alt="" className='cheffyLogo'/>
+    <div className='mealPlanner'>
+      <div className='mealTitleBar'>
+        Meal Planner 🤖
       </div>
-      <div className='recipeChatContainer'>
-        <div className='recipeChatBox'>
-          <ChatBox messages={recipeMessages} greetText={`Let's turn those ingredients into a feast! 🍲✨`}/>
+      <div className='mealPlannerContainer'>
+        <div className='mealPlannerBox'>
+          <ChatBox messages={mealMessages} />
         </div>
         <div className="senderContainer">
           <div className="inputContainer">
             <textarea 
-              placeholder={`Tell us those ingredients... and let's whip up a culinary masterpiece! 🍳👩‍🍳👨‍🍳`}
+              placeholder={`Lets plan chief`}
               value={newMessage} 
               onChange={(e) => { setNewMessage(e.target.value) }} 
               className='recipeInput' 
@@ -60,4 +59,4 @@ const RecipeChat = () => {
   )
 }
 
-export default RecipeChat
+export default MealPlanner

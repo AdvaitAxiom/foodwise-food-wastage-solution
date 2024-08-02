@@ -7,6 +7,7 @@ import MealPlanner from "../assets/MealPlanner.png"
 import ExpirationTracker from "../assets/ExpirationTracker.png"
 import RecipeSuggestion from "../assets/RecipeSuggestion.png"
 import Donation from "../assets/Donation.png"
+import Footer from '../Components/Footer'
 
 const Home = () => {
     return (
@@ -74,6 +75,7 @@ const Home = () => {
                         <img src={WorldMap} alt="" />
                     </div>
                 </div>
+                <Footer/>
             </div>
         </div>
     )

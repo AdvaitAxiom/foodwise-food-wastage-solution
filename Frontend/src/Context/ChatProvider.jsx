@@ -4,7 +4,8 @@ const ChatContext = createContext()
 
 const ChatProvider = ({ children }) => {
     const [recipeMessages, setRecipeMessages] = useState([]);
-    return <ChatContext.Provider value={{ recipeMessages, setRecipeMessages }}>{children}</ChatContext.Provider>
+    const [mealMessages, setMealMessages] = useState([]);
+    return <ChatContext.Provider value={{ recipeMessages, setRecipeMessages,mealMessages, setMealMessages }}>{children}</ChatContext.Provider>
 }
 
 export const ChatState = () => {
