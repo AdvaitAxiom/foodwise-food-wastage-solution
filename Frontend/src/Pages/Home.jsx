@@ -8,6 +8,7 @@ import ExpirationTracker from "../assets/ExpirationTracker.png"
 import RecipeSuggestion from "../assets/RecipeSuggestion.png"
 import Donation from "../assets/Donation.png"
 import Footer from '../Components/Footer'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
@@ -34,38 +35,38 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="callToActionContainer">
-                    <div className="callToAction">
+                    <Link to={"/meal-planner"} className="callToAction">
                         <div className="callToActionImage">
                             <img src={MealPlanner} alt="" />
                         </div>
                         <div className="callToActionText">
                             Meal Planner
                         </div>
-                    </div>
-                    <div className="callToAction">
+                    </Link>
+                    <Link to={"/expiration-tracker"} className="callToAction">
                         <div className="callToActionImage">
                             <img src={ExpirationTracker} alt="" />
                         </div>
                         <div className="callToActionText">
                             Expiration Tracker
                         </div>
-                    </div>
-                    <div className="callToAction">
+                    </Link>
+                    <Link to={"/recipechat"} className="callToAction">
                         <div className="callToActionImage">
                             <img src={RecipeSuggestion} alt="" />
                         </div>
                         <div className="callToActionText">
                             AI Recipe Suggestion
                         </div>
-                    </div>
-                    <div className="callToAction">
+                    </Link>
+                    <Link to={"/organisations"} className="callToAction">
                         <div className="callToActionImage">
                             <img src={Donation} alt="" />
                         </div>
                         <div className="callToActionText">
                             Donation
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className="mapContainer">
                     <div className="mapText">
