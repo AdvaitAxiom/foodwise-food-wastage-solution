@@ -6,6 +6,7 @@ import Home from './Pages/Home'
 import MealPlanner from './Pages/MealPlanner'
 import AboutUs from './Pages/AboutUs'
 import ExpirationTracker from './Pages/ExpirationTracker'
+import Organisations from './Pages/Organisations'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/meal-planner' element={<LoginLock needLoggedIn={true}><MealPlanner /></LoginLock>} />
         <Route path='/about-us' element={<LoginLock needLoggedIn={true}><AboutUs /></LoginLock>} />
         <Route path='/expiration-tracker' element={<LoginLock needLoggedIn={true}><ExpirationTracker /></LoginLock>} />
+        <Route path='/organisations' element={<LoginLock needLoggedIn={true}><Organisations /></LoginLock>} />
       </Routes>
     </>
   )
