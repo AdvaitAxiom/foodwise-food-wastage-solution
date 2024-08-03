@@ -40,7 +40,7 @@ const MealPlanner = () => {
 
     const data = {
       username: username,
-      chat: JSON.stringify(message),
+      chat: message,
       type:"mealPlanningChat"
     }
 

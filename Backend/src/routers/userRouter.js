@@ -19,6 +19,6 @@ router.post("/logout", addTokenToRequest,logoutUser);
 router.get("/profile", addTokenToRequest,verifyAccessToken,getProfile);
 router.get("/refresh",addTokenToRequest,verifyRefreshToken,refresh)
 router.post("/update-chat",addTokenToRequest,verifyAccessToken,updateChat)
-router.get("/get-chat",addTokenToRequest,verifyAccessToken,fetchAllChats)
+router.post("/get-chat",addTokenToRequest,verifyAccessToken,fetchAllChats)
 
 export default router;

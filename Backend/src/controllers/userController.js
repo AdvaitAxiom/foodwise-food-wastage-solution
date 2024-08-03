@@ -1,7 +1,6 @@
 // controllers/userController.js
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken";
 import BlackListedTokens from "../models/blacklistedTokesModel.js";
 import { CustomStatusCodes } from "../Utilities/CustomStatusCodes.js";
 import { newAccessToken, signUser } from "../Helpers/jwt.auth.helper.js";
@@ -121,7 +120,7 @@ export const updateChat = async (req, res) => {
     }
 
     // Update the appropriate chat array
-    user[type].push(JSON.parse(JSON.stringify(chat)));
+    user[type].push(chat);
 
     // Save the user document
     await user.save();

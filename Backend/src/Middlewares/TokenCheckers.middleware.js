@@ -1,8 +1,9 @@
 const addTokenToRequest=(req,res,next)=>{
     const bearer=req.headers['authorization']
+    console.log(req.headers)
     if(!bearer){
         res.status(404).send({
-            message:`TOKEN NOT FOUND`
+            message:`TOKEN NOT FOUND AT ALL`
         })
     }else{
         const token=bearer.split(' ')[1]
