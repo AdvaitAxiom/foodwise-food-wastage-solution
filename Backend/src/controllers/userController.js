@@ -137,3 +137,40 @@ export const updateChat = async (req, res) => {
     });
   }
 };
+
+export const fetchAllChats = async (req, res) => {
+  try {
+    const { username } = req;
+    const { type } = req.body;
+
+    // Validate the chat type
+    if (!['recipeSuggestionChat', 'mealPlanningChat'].includes(type)) {
+      return res.status(400).send({
+        message: 'Invalid chat type',
+      });
+    }
+
+    // Find the user by username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send({
+        message: 'User not found',
+      });
+    }
+
+    // Retrieve all chats of the specified type
+    const chats = user[type];
+
+    res.status(200).send({
+      message: 'Chats fetched successfully',
+      chats, // Include all chats of the specified type
+    });
+  } catch (error) {
+    console.error('Error fetching chats:', error);
+    res.status(500).send({
+      message: 'Internal Server Error',
+    });
+  }
+};
+
