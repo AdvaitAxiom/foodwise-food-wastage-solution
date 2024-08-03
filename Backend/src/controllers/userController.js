@@ -85,13 +85,14 @@ export const logoutUser = async (req, res) => {
 
 // Get user profile
 export const getProfile = async (req, res) => {
+  const username=req.username
   try {
-    const user = await User.findById(req.user.userId);
+    const user = await User.findOne({username});
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: "Error getting profile", error });
+    res.status(500).json({ message: error.message });
   }
 };
