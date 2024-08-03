@@ -7,11 +7,13 @@ import MealPlanner from './Pages/MealPlanner'
 import AboutUs from './Pages/AboutUs'
 import ExpirationTracker from './Pages/ExpirationTracker'
 import Organisations from './Pages/Organisations'
+import AuthPage from './Pages/AuthPage'
 
 function App() {
   return (
     <>
       <Routes>
+        <Route path='/registration' element={<LoginLock needLoggedIn={false}><AuthPage/></LoginLock>} />
         <Route path='/' element={<LoginLock needLoggedIn={true}><Home /></LoginLock>} />
         <Route path='/recipechat' element={<LoginLock needLoggedIn={true}><RecipeChat /></LoginLock>} />
         <Route path='/meal-planner' element={<LoginLock needLoggedIn={true}><MealPlanner /></LoginLock>} />
