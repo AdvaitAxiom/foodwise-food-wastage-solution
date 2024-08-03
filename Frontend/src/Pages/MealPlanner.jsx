@@ -6,6 +6,8 @@ import "../Styles/CSS/mealPlanner.css"
 import { mealModel } from '../utils/geminiModels'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { getAccessToken } from '../utils/jwt.auth.util'
+import axios from 'axios'
 
 const MealPlanner = () => {
   const { mealMessages, setMealMessages } = ChatState()
@@ -14,10 +16,12 @@ const MealPlanner = () => {
   const chat=async (message)=>{
     const chatInstance = mealModel.startChat({ history: mealMessages });
     const result = await chatInstance.sendMessage(message);
+    const modelMessage = { role: "model", parts: [{ text: result.response.text() }] }
     setMealMessages((prevMessages) => [
       ...prevMessages,
-      { role: "model", parts: [{ text: result.response.text() }] }
+      modelMessage
     ]);
+    updateChat(modelMessage)
   }
 
   const handleSubmit = async () => {
@@ -26,6 +30,31 @@ const MealPlanner = () => {
       setMealMessages((prevMessages) => [...prevMessages, userMessage]);
       setNewMessage('');
       await chat(newMessage);
+      updateChat(userMessage)
+    }
+  }
+
+  const updateChat = async (message) => {
+    const api_url = `${import.meta.env.VITE_APP_BACKEND_API}/user/update-chat`
+    const username = localStorage.getItem("username")
+
+    const data = {
+      username: username,
+      chat: JSON.stringify(message),
+      type:"mealPlanningChat"
+    }
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${await getAccessToken()}`,
+        "Content-type": "application/json"
+      },
+    };
+
+    try {
+      await axios.post(api_url, data, config)
+    } catch (error) {
+      console.error("Failed to update chat:", error)
     }
   }
 
