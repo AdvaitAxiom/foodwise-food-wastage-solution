@@ -5,19 +5,19 @@ import jwt from "jsonwebtoken";
 import BlackListedTokens from "../models/blacklistedTokesModel.js";
 import { CustomStatusCodes } from "../Utilities/CustomStatusCodes.js";
 import { newAccessToken, signUser } from "../Helpers/jwt.auth.helper.js";
-import { json } from "express";
 
 // Register a new user
 export const registerUser = async (req, res) => {
-  const { username, password, email, recipeSuggestionChat, mealPlanningChat } = req.body;
+  const { username, password, email, name } = req.body;
   try {
     // Create a new user with all provided fields
     const newUser = new User({
       username,
       password,
       email,
-      recipeSuggestionChat: recipeSuggestionChat || [],  // Default to empty array if not provided
-      mealPlanningChat: mealPlanningChat || []             // Default to empty array if not provided
+      name,
+      recipeSuggestionChat: [],  
+      mealPlanningChat:  []             
     });
 
     // Save the user to the database
