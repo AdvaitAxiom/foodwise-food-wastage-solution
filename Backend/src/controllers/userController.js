@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import BlackListedTokens from "../models/blacklistedTokesModel.js";
 import { CustomStatusCodes } from "../Utilities/CustomStatusCodes.js";
 import { newAccessToken, signUser } from "../Helpers/jwt.auth.helper.js";
+import { json } from "express";
 
 // Register a new user
 export const registerUser = async (req, res) => {
@@ -42,7 +43,7 @@ export const loginUser = async (req, res) => {
     res.status(CustomStatusCodes.SUCCESS).send({
       accessToken: accessToken,
       refreshToken: refreshToken,
-      userId: user._id,
+      username: user.username,
       code: CustomStatusCodes.SUCCESS
     })
   } catch (error) {
@@ -94,5 +95,45 @@ export const getProfile = async (req, res) => {
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+export const updateChat = async (req, res) => {
+  try {
+    const { username } = req;
+    const { type, chat } = req.body;
+    console.log(chat)
+
+    // Validate the chat type
+    if (!['recipeSuggestionChat', 'mealPlanningChat'].includes(type)) {
+      return res.status(400).send({
+        message: 'Invalid chat type',
+      });
+    }
+
+    // Find the user by username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send({
+        message: 'User not found',
+      });
+    }
+
+    // Update the appropriate chat array
+    user[type].push(JSON.parse(JSON.stringify(chat)));
+
+    // Save the user document
+    await user.save();
+
+    res.status(200).send({
+      message: 'Chat updated successfully',
+      user, // Optionally include the updated user object
+    });
+  } catch (error) {
+    console.error('Error updating chat:', error);
+    res.status(500).send({
+      message: 'Internal Server Error',
+    });
   }
 };

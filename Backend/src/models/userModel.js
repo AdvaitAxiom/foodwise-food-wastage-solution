@@ -1,20 +1,6 @@
 // models/userModel.js
 import mongoose from 'mongoose';
 import bcrypt from "bcryptjs"
-const chatSchema = new mongoose.Schema({
-  role: {
-    type: String,
-    required: true,
-  },
-  parts: [
-    {
-      text: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-});
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -35,8 +21,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  recipeSuggestionChat: [chatSchema],
-  mealPlanningChat: [chatSchema],
+  recipeSuggestionChat: [],
+  mealPlanningChat: [],
 });
 
 userSchema.pre("save",async function(next) {
