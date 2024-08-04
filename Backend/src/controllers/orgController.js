@@ -3,9 +3,9 @@ import Organization from "../models/orgModel.js";
 
 // Create a new organization
 export const createOrganization = async (req, res) => {
-  const { name, email, phoneNo, about, type, address } = req.body;
+  const { name, email, phoneNo, about, type, address,password } = req.body;
   try {
-    const newOrganization = new Organization({ name, email, phoneNo, about, type, address });
+    const newOrganization = new Organization({ name, email, phoneNo, about, type, address,password });
     await newOrganization.save();
     res.status(201).json(newOrganization);
   } catch (error) {
