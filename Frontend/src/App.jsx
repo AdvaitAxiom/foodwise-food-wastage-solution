@@ -8,6 +8,7 @@ import AboutUs from './Pages/AboutUs'
 import ExpirationTracker from './Pages/ExpirationTracker'
 import Organisations from './Pages/Organisations'
 import AuthPage from './Pages/AuthPage'
+import Profile from './Pages/Profile'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/about-us' element={<LoginLock needLoggedIn={true}><AboutUs /></LoginLock>} />
         <Route path='/expiration-tracker' element={<LoginLock needLoggedIn={true}><ExpirationTracker /></LoginLock>} />
         <Route path='/organisations' element={<LoginLock needLoggedIn={true}><Organisations /></LoginLock>} />
+        <Route path='/profile' element={<LoginLock needLoggedIn={true}><Profile /></LoginLock>} />
       </Routes>
     </>
   )
