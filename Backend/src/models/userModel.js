@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   recipeSuggestionChat: [],
   mealPlanningChat: [],
+  products: [],
 });
 
 userSchema.pre("save",async function(next) {

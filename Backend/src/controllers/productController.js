@@ -1,52 +1,57 @@
-// controllers/productController.js
-import Product from "../models/productModel.js";
+// controllers/userController.js
+import User from '../models/userModel.js';
 
-// Create a new product
-export const createProduct = async (req, res) => {
-  const { name, type, packaged, expiryDate, details } = req.body;
+export const updateProducts = async (req, res) => {
   try {
-    const newProduct = new Product({ name, type, packaged, expiryDate, details });
-    await newProduct.save();
-    res.status(201).json(newProduct);
-  } catch (error) {
-    res.status(500).json({ message: "Error creating product", error });
-  }
-};
+    const { username } = req;
+    const newProduct = req.body.product;
 
-// Get a single product by ID
-export const getProduct = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const product = await Product.findById(id);
-    if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+    // Find the user by username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send({
+        message: 'User not found',
+      });
     }
-    res.status(200).json(product);
+
+    // Add the new product to the products array
+    user.products.push(newProduct);
+
+    // Save the updated user document
+    await user.save();
+
+    res.status(200).send({
+      message: 'Product added successfully',
+      products: user.products,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Error getting product", error });
+    console.error('Error updating products:', error);
+    res.status(500).send({
+      message: 'Internal Server Error',
+    });
   }
 };
 
-// Get all products
-export const getProducts = async (req, res) => {
+export const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find({});
-    res.status(200).json(products);
-  } catch (error) {
-    res.status(500).json({ message: "Error getting products", error });
-  }
-};
+    const { username } = req;
 
-// Delete a product by ID
-export const deleteProduct = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const product = await Product.findByIdAndDelete(id);
-    if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send({
+        message: 'User not found',
+      });
     }
-    res.status(200).json({ message: "Product deleted successfully" });
+
+    res.status(200).send({
+      products: user.products,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Error deleting product", error });
+    console.error('Error fetching products:', error);
+    res.status(500).send({
+      message: 'Internal Server Error',
+    });
   }
 };

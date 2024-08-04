@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Styles/CSS/expirationTracker.css';
 import NavBar from '../Components/NavBar';
 import Footer from '../Components/Footer';
+import axios from 'axios';
+import { getAccessToken } from '../utils/jwt.auth.util';
 
 const ExpirationTracker = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -9,19 +11,69 @@ const ExpirationTracker = () => {
   const [foodType, setFoodType] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
 
-  const handleAddFoodItem = () => {
+  // Fetch food items from the backend
+  const fetchFoodItems = async () => {
+    const api_url = `${import.meta.env.VITE_APP_BACKEND_API}/product/get-products`;    
+    const config = {
+      headers: {
+        Authorization: `Bearer ${await getAccessToken()}`,
+        "Content-type": "application/json"
+      },
+    };
+
+    try {
+      const response = await axios.get(api_url, config);
+      if (response.data && response.data.products) {
+        setFoodItems(response.data.products.map(product => ({
+          ...product,
+          expirationDate: new Date(product.expirationDate)
+        })));
+      }
+    } catch (error) {
+      console.error('Error fetching food items:', error);
+    }
+  };
+
+  // Add a new food item to the backend
+  const handleAddFoodItem = async () => {
     if (foodName && foodType && expirationDate) {
       const newFoodItem = {
         name: foodName,
         type: foodType,
         expirationDate: new Date(expirationDate),
       };
-      setFoodItems([...foodItems, newFoodItem]);
-      setFoodName('');
-      setFoodType('');
-      setExpirationDate('');
-    }else{
-      alert('Empty')
+
+      const api_url = `${import.meta.env.VITE_APP_BACKEND_API}/product/update-products`;
+      const username = localStorage.getItem('username');
+      
+      const config = {
+        headers: {
+          Authorization: `Bearer ${await getAccessToken()}`,
+          "Content-type": "application/json"
+        }
+      };
+
+      const data = {
+        username,
+        product: newFoodItem
+      };
+
+      try {
+        const response = await axios.post(api_url, JSON.stringify(data), config);
+        if (response.data && response.data.products) {
+          setFoodItems(response.data.products.map(product => ({
+            ...product,
+            expirationDate: new Date(product.expirationDate)
+          })));
+        }
+        setFoodName('');
+        setFoodType('');
+        setExpirationDate('');
+      } catch (error) {
+        console.error('Error adding food item:', error);
+      }
+    } else {
+      alert('Please fill in all fields');
     }
   };
 
@@ -37,6 +89,10 @@ const ExpirationTracker = () => {
       return 'Fresh';
     }
   };
+
+  useEffect(() => {
+    fetchFoodItems();
+  }, []);
 
   return (
     <div className='expirationTrackerContainer'>
