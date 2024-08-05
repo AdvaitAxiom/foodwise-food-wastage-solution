@@ -203,4 +203,8 @@
     .mapText{
         font-size: 30px;
     }
+    .mapContainer{
+        height: 40vw;
+    }
+
 }
