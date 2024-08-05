@@ -20,7 +20,6 @@ const Login = ({ setIsLogin, setIsOrg }) => {
         event.preventDefault()
 
         const api_url = `${import.meta.env.VITE_APP_BACKEND_API}/user/login`
-        console.log(api_url)
         const data = {
             username: username,
             password: password

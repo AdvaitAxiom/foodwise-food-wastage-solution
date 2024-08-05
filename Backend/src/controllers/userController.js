@@ -101,7 +101,6 @@ export const updateChat = async (req, res) => {
   try {
     const { username } = req;
     const { type, chat } = req.body;
-    console.log(chat)
 
     // Validate the chat type
     if (!['recipeSuggestionChat', 'mealPlanningChat'].includes(type)) {

@@ -23,7 +23,6 @@ const ChatProvider = ({ children }) => {
         try {
             const response = await axios.post(api_url, { username, type }, config)
             if (response.data && response.data.chats) {
-                console.log(JSON.parse(JSON.stringify(response.data.chats)))
                 setMessages(JSON.parse(JSON.stringify(response.data.chats)))
             }
         } catch (error) {
