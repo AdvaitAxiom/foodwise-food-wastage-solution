@@ -35,4 +35,8 @@
   .footerLink:hover {
     text-decoration: underline;
   }
-  
+  @media (max-width:600px) {
+    .footerLinks{
+      flex-direction: column;
+    }
+  }
