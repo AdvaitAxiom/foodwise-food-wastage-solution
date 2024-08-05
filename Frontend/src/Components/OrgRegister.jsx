@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import '../Styles/CSS/Login.css'
-import FoodShortage from "../assets/FoodShortage.jpg"
+import FoodShortage from "../assets/FoodHunger.jpg"
 
 
 const OrgRegister = ({ setIsLogin, setIsOrg }) => {

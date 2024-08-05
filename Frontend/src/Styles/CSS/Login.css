@@ -35,7 +35,7 @@
 
 .loginRightContent {
     width: calc(100% / 2);
-    max-height: 100%;
+    height: 80%;
     padding-left: 2%;
     padding-right: 2%;
     overflow-y: scroll;
@@ -130,4 +130,13 @@
     font-size: 15px;
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
+}
+
+@media (max-width:900px) {
+    .loginLeftContent{
+        display: none;
+    }
+    .loginRightContent{
+        width: 100%;
+    }
 }

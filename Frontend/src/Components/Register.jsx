@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import '../Styles/CSS/Login.css'
-import FoodShortage from "../assets/FoodShortage.jpg"
+import FoodShortage from "../assets/FoodHunger.jpg"
 
 const Register = ({ setIsLogin, setIsOrg }) => {
     const [isShow, setIsShow] = useState(false)

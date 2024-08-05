@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import '../Styles/CSS/Login.css'
-import FoodShortage from "../assets/FoodShortage.jpg"
+import FoodShortage from "../assets/FoodHunger.jpg"
 import { setAccessToken, setRefreshToken } from '../utils/jwt.auth.util'
 
 const Login = ({ setIsLogin, setIsOrg }) => {
