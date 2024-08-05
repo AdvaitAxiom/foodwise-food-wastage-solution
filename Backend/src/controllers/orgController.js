@@ -13,6 +13,28 @@ export const createOrganization = async (req, res) => {
   }
 };
 
+
+//login for organisation
+export const loginOrganization = async (req, res) => {
+  const { name, password } = req.body;
+  try {
+    const organization = await Organization.findOne({ name });
+    if (!organization) {
+      return res.status(404).json({ message: "Organization not found" });
+    }
+
+    const isMatch = await bcrypt.compare(password, organization.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+
+    res.status(200).json({ token, organization: { id: organization._id, name: organization.name } });
+  } catch (error) {
+    res.status(500).json({ message: "Error logging in", error });
+  }
+};
+
 // Get a single organization by ID
 export const getOrganization = async (req, res) => {
   const { id } = req.params;
